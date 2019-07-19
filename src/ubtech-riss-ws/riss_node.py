@@ -37,44 +37,55 @@ class motionControl(object):
     def joy_cb(self, msg):
         if(msg.axes[3]>0):
             rospy.loginfo('[{}] Moving forward'.format(rospy.get_name()))
-            motion_controller.act("Forward", 'fast', 3)
+            self.act("Forward", 'fast', 3)
 
         elif(msg.axes[3]<0):
             rospy.loginfo('[{}] Moving backward'.format(rospy.get_name()))
-            motion_controller.act("Backward", 'fast', 3)
+            self.act("Backward", 'fast', 3)
 
         elif (msg.axes[2]<0):
             rospy.loginfo('[{}] Turning right'.format(rospy.get_name()))
-            motion_controller.act("TurnRight", 'normal', 1)
+            self.act("TurnRight", 'normal', 1)
 
         elif (msg.axes[2]>0):
             rospy.loginfo('[{}] Turning left'.format(rospy.get_name()))
-            motion_controller.act("TurnLeft", 'normal', 1)
+            self.act("TurnLeft", 'normal', 1)
 
         elif(msg.axes[1]>0):
             rospy.loginfo('[{}] Grasping forward'.format(rospy.get_name()))
-            motion_controller.act("Forward_g", 'normal', 2)
+            self.act("Forward_g", 'normal', 2)
 
         elif(msg.axes[1]<0):
             rospy.loginfo('[{}] Grasping backward'.format(rospy.get_name()))
-            motion_controller.act("Backward_g", 'normal', 2)
+            self.act("Backward_g", 'normal', 2)
 
         elif (msg.buttons[10] == 1):
             rospy.loginfo('[{}] Grasping left One'.format(rospy.get_name()))
-            motion_controller.act("Left1_g", 'slow', 1)
+            self.act("Left1_g", 'slow', 1)
 
         elif (msg.buttons[8] == 1):
             rospy.loginfo('[{}] Grasping left two'.format(rospy.get_name()))
-            motion_controller.act("Left2_g", 'slow', 1)
+            self.act("Left2_g", 'slow', 1)
 
         elif (msg.buttons[11] == 1):
             rospy.loginfo('[{}] Grasping Right One'.format(rospy.get_name()))
-            motion_controller.act("Right1_g", 'slow', 1)
+            self.act("Right1_g", 'slow', 1)
+
+        elif (msg.buttons[9] == 1):
+            rospy.loginfo('[{}] Grasping Right Two'.format(rospy.get_name()))
+            self.act("Right2_g", 'slow', 1)
 
         elif (msg.buttons[12] == 1):
             rospy.loginfo('[{}] Grasping'.format(rospy.get_name()))
-            motion_controller.act("Grab_g", 'slow', 1)
+            self.act("Grab_g", 'slow', 1)
 
+        elif (msg.buttons[13] == 1):
+            rospy.loginfo('[{}] Stopping....'.format(rospy.get_name()))
+            self.act("Stop", 'slow', 1)
+
+        elif (msg.buttons[14] == 1):
+            rospy.loginfo('[{}] Getting up'.format(rospy.get_name()))
+            self.act("GetUp", 'slow', 1)
 
 def sleep(_sec):
     rospy.sleep(_sec)
