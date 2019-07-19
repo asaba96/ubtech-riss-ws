@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="joy" name="joy" type="joy_node" output="screen" />
+    <node pkg="ubtech-riss-ws" name="ubtech-riss-ws" type="riss_node.py" output="screen" />
+</launch>
